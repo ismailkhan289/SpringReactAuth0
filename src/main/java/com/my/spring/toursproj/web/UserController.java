@@ -42,9 +42,6 @@ public class UserController {
         // send logout URL to client so they can initiate logout
         String logoutUrl = this.registration.getProviderDetails()
                 .getConfigurationMetadata().get("end_session_endpoint").toString();
-        System.out.println("Logout URL: " + logoutUrl);
-        System.out.println("ID Token: " + idToken.getTokenValue());
-
         Map<String, String> logoutDetails = new HashMap<>();
         logoutDetails.put("logoutUrl", logoutUrl);
         logoutDetails.put("idToken", idToken.getTokenValue());
