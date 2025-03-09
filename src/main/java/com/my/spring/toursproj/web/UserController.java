@@ -22,7 +22,9 @@ public class UserController {
     private final ClientRegistration registration;
 
     public UserController(ClientRegistrationRepository registrations) {
-        this.registration = registrations.findByRegistrationId("okta");
+        // if you are using Okta then findByRegistrationId paramater Okta otherwise
+        // auth0.
+        this.registration = registrations.findByRegistrationId("auth0");
     }
 
     @GetMapping("/api/user")
@@ -42,6 +44,7 @@ public class UserController {
                 .getConfigurationMetadata().get("end_session_endpoint").toString();
         System.out.println("Logout URL: " + logoutUrl);
         System.out.println("ID Token: " + idToken.getTokenValue());
+
         Map<String, String> logoutDetails = new HashMap<>();
         logoutDetails.put("logoutUrl", logoutUrl);
         logoutDetails.put("idToken", idToken.getTokenValue());
